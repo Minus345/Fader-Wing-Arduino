@@ -74,14 +74,25 @@ void setup()
 
 void readMotor()
 {
-  // pos[0] = analogRead(A8);
-  pos[0] = map(analogRead(A8), 9, 979, 0, 1023);
-  // pos[1] = analogRead(A9);
-  pos[1] = map(analogRead(A9), 5, 995, 0, 1023);
-  // pos[2] = analogRead(A10);
-  pos[2] = map(analogRead(A10), 21, 1011, 0, 1023);
-  // pos[3] = analogRead(A11);
-  pos[3] = map(analogRead(A11), 22, 996, 0, 1023);
+  //pos[0] = analogRead(A8);
+   pos[0] = map(analogRead(A8), 100, 933, 0, 1023);
+  //pos[1] = analogRead(A9);
+   pos[1] = map(analogRead(A9), 98, 943, 0, 1023);
+  //pos[2] = analogRead(A10);
+   pos[2] = map(analogRead(A10), 94, 930, 0, 1023);
+  //pos[3] = analogRead(A11);
+   pos[3] = map(analogRead(A11), 96, 929, 0, 1023);
+   
+  /*
+  Serial.print(analogRead(A8));
+  Serial.print("|");
+  Serial.print(analogRead(A9));
+  Serial.print("|");
+  Serial.print(analogRead(A10));
+  Serial.print("|");
+  Serial.print(analogRead(A11));
+  Serial.println("|");
+  */
 
   for (int i = 0; i < 4; i++)
   {
@@ -230,9 +241,6 @@ void driveToPlace(int location, int motorNumber, int round)
   case 3:
     speedDTP = speed / 4;
     break;
-  case 4:
-    speedDTP = speed / 5;
-    break;
   }
 
   boolean drive;
@@ -256,7 +264,7 @@ void driveToPlace(int location, int motorNumber, int round)
       // Serial.println(location);
       if (pos[posNumber] <= location)
       {
-        drive = false;
+        drive = false; // add counter to stop if nothing happens <-------------------
         // Serial.println("Stop");
       }
     }
@@ -310,7 +318,7 @@ void loop()
   boolean button4 = digitalRead(51);
   boolean button5 = digitalRead(53);
 
-  int rounds = 4;
+  int rounds = 3;
 
   if (button1 == 0)
   {
@@ -435,53 +443,56 @@ void loop()
   default:
     break;
   }
-
+///*
   if (array_cmp(posAlt, pos, 4, 4) == false)
   {
-    Serial.print(map(layer1[0], 0, 1023, 0, 255));
+
+    int mapTo = 255; // dmx 255 serail 1024
+    Serial.print(map(layer1[0], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer1[1], 0, 1023, 0, 255));
+    Serial.print(map(layer1[1], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer1[2], 0, 1023, 0, 255));
+    Serial.print(map(layer1[2], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer1[3], 0, 1023, 0, 255));
+    Serial.print(map(layer1[3], 0, 1023, 0, mapTo));
     Serial.print("|");
 
-    Serial.print(map(layer2[0], 0, 1023, 0, 255));
+    Serial.print(map(layer2[0], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer2[1], 0, 1023, 0, 255));
+    Serial.print(map(layer2[1], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer2[2], 0, 1023, 0, 255));
+    Serial.print(map(layer2[2], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer2[3], 0, 1023, 0, 255));
-    Serial.print("|");
-
-    Serial.print(map(layer3[0], 0, 1023, 0, 255));
-    Serial.print("|");
-    Serial.print(map(layer3[1], 0, 1023, 0, 255));
-    Serial.print("|");
-    Serial.print(map(layer3[2], 0, 1023, 0, 255));
-    Serial.print("|");
-    Serial.print(map(layer3[3], 0, 1023, 0, 255));
+    Serial.print(map(layer2[3], 0, 1023, 0, mapTo));
     Serial.print("|");
 
-    Serial.print(map(layer4[0], 0, 1023, 0, 255));
+    Serial.print(map(layer3[0], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer4[1], 0, 1023, 0, 255));
+    Serial.print(map(layer3[1], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer4[2], 0, 1023, 0, 255));
+    Serial.print(map(layer3[2], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer4[3], 0, 1023, 0, 255));
+    Serial.print(map(layer3[3], 0, 1023, 0, mapTo));
     Serial.print("|");
 
-    Serial.print(map(layer5[0], 0, 1023, 0, 255));
+    Serial.print(map(layer4[0], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer5[1], 0, 1023, 0, 255));
+    Serial.print(map(layer4[1], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer5[2], 0, 1023, 0, 255));
+    Serial.print(map(layer4[2], 0, 1023, 0, mapTo));
     Serial.print("|");
-    Serial.print(map(layer5[3], 0, 1023, 0, 255));
+    Serial.print(map(layer4[3], 0, 1023, 0, mapTo));
     Serial.print("|");
+
+    Serial.print(map(layer5[0], 0, 1023, 0, mapTo));
+    Serial.print("|");
+    Serial.print(map(layer5[1], 0, 1023, 0, mapTo));
+    Serial.print("|");
+    Serial.print(map(layer5[2], 0, 1023, 0, mapTo));
+    Serial.print("|");
+    Serial.print(map(layer5[3], 0, 1023, 0, mapTo));
+
+    // Serial.print("|");
 
     Serial.println();
 
@@ -490,4 +501,5 @@ void loop()
       posAlt[i] = pos[i];
     }
   }
+  //*/
 }
