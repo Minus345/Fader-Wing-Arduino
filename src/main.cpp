@@ -70,6 +70,7 @@ void setup()
   digitalWrite(47, HIGH);
   pinMode(45, INPUT);
   digitalWrite(45, HIGH);
+
 }
 
 void readMotor()
@@ -322,6 +323,7 @@ void loop()
 
   if (button1 == 0)
   {
+    Serial.println("t");
     layer = 1;
     for (int i = 0; i < rounds; i++)
     {
@@ -335,9 +337,11 @@ void loop()
     {
       motor(i, RELEASE, speed);
     }
+    Serial.println("f");
   }
   if (button2 == 0)
   {
+    Serial.println("t");
     layer = 2;
     for (int i = 0; i < rounds; i++)
     {
@@ -351,9 +355,11 @@ void loop()
     {
       motor(i, RELEASE, speed);
     }
+    Serial.println("f");
   }
   if (button3 == 0)
   {
+    Serial.println("t");
     layer = 3;
     for (int i = 0; i < rounds; i++)
     {
@@ -367,9 +373,11 @@ void loop()
     {
       motor(i, RELEASE, speed);
     }
+    Serial.println("f");
   }
   if (button4 == 0)
   {
+    Serial.println("t");
     layer = 4;
     for (int i = 0; i < rounds; i++)
     {
@@ -386,6 +394,7 @@ void loop()
   }
   if (button5 == 0)
   {
+    Serial.println("t");
     layer = 5;
     for (int i = 0; i < rounds; i++)
     {
@@ -399,6 +408,7 @@ void loop()
     {
       motor(i, RELEASE, speed);
     }
+    Serial.println("f");
   }
 
   readMotor();
@@ -492,7 +502,9 @@ void loop()
     Serial.print("|");
     Serial.print(map(layer5[3], 0, 1023, 0, mapTo));
 
-    // Serial.print("|");
+//dmx
+    Serial.print("|");
+    Serial.print(layer);
 
     Serial.println();
 
