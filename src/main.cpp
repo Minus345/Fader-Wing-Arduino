@@ -52,7 +52,6 @@ int speed = 200;
 void setup()
 {
   Serial.begin(9600);
-  Serial.println("Simple Adafruit Motor Shield sketch");
   servo_1.attach(SERVO1_PWM);
   servo_2.attach(SERVO2_PWM);
   pinMode(A8, INPUT);
