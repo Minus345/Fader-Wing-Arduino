@@ -390,6 +390,7 @@ void loop()
     {
       motor(i, RELEASE, speed);
     }
+    Serial.println("f");
   }
   if (button5 == 0)
   {
@@ -453,8 +454,8 @@ void loop()
     break;
   }
 ///*
-  if (array_cmp(posAlt, pos, 4, 4) == false)
-  {
+  //if (array_cmp(posAlt, pos, 4, 4) == false)
+  //{
 
     int mapTo = 255; // dmx 255 serail 1024
     Serial.print(map(layer1[0], 0, 1023, 0, mapTo));
@@ -511,6 +512,6 @@ void loop()
     {
       posAlt[i] = pos[i];
     }
-  }
+  //}
   //*/
 }
